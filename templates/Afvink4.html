@@ -20,8 +20,11 @@
          {{ een }}
             </p>
     <p>
-
-         {{ twee }}
+        {% if soort == "Eiwit" %}
+          <a href={{ twee }}>blast link</a>
+        {% else %}
+        {{ twee }}
+        {% endif %}
     </p>
 
 </form>
