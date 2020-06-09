@@ -24,6 +24,13 @@ def web_pagina():
                                een=(bio_rna.back_transcribe()),
                                twee=(bio_rna.translate()))
 
+    elif check_eiwit(seq):
+        bio_eiwit = Seq(seq, generic_rna)
+        return render_template("Afvink4.html",
+                               soort='Eiwit',
+                               een="klik op de link en druk op blast",
+                               twee="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastp&PAGE_TYPE=BlastSearch&QUERY=" + str(seq))
+
     else:
 
         return render_template("Afvink4.html",
@@ -43,6 +50,36 @@ def check_rna(seq):
         if i not in ['A', 'C', 'G', 'U']:
             return False
     return True
+
+def check_eiwit(seq):
+    amino = ["A",
+             "R",
+             "N",
+             "D",
+             "B",
+             "C",
+             "E",
+             "Q",
+             "Z",
+             "G",
+             "H",
+             "I",
+             "L",
+             "K",
+             "M",
+             "F",
+             "P",
+             "S",
+             "T",
+             "W",
+             "Y",
+             "V",
+             "X"]
+    for i in seq:
+        if i not in amino:
+            return False
+    return True
+
 
 
 if __name__ == '__main__':
